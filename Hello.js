@@ -11,6 +11,6 @@ export default function Hello() {
 
 const styles = StyleSheet.create({
     hello: {
-        color: 'rebeccapurple',
+        backgroundColor: 'rebeccapurple'
     }
 });
