@@ -3,12 +3,24 @@ import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 import Hello from './Hello';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <TextInput style={styles.input} />
-    </View>
-  );
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      inputValue: 'Hi',
+    }
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInput 
+          value={this.state.inputValue}
+          style={styles.input} 
+        />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -24,5 +36,6 @@ const styles = StyleSheet.create({
     width: '100%',
     borderColor: '#eee', 
     borderWidth: 1,
+    padding: 5,
   },
 });
