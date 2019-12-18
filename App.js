@@ -1,11 +1,15 @@
-import Expo from 'expo';
 import React from 'react';
-import {  Button, 
-          StyleSheet, 
-          Text, 
-          View, 
-          TextInput 
-        } from 'react-native';
+import {
+  Button, 
+  StyleSheet, 
+  Text, 
+  View, 
+  TextInput 
+} from 'react-native';
+
+import { AppLoading } from 'expo';
+import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
 
 import {
   Container,
@@ -17,13 +21,26 @@ import {
   Title,
 } from 'native-base';
 
+import Hello from './Hello';
+
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
       inputValue: '',
+      tip: 0.2,
+      isReady: false,
     }
   };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+      ...Ionicons.font,
+    });
+    this.setState({ isReady: true });
+  }
 
   updateCustomTip(customTip) {
     if(customTip) {
@@ -41,6 +58,11 @@ export default class App extends React.Component {
       tip = parseFloat(this.state.inputValue * this.state.tip)
       tip = (Math.round(tip * 100)/100).toFixed(2);
     }
+
+    if (!this.state.isReady) {
+      return <AppLoading />;
+    }
+
     return (
       <Container>
         <Header>
@@ -51,6 +73,7 @@ export default class App extends React.Component {
           </Left>
         </Header>
           <Content padder>
+            <Hello />
           <View style={styles.container}>
             <Text>
               ${tip}

@@ -4,13 +4,14 @@ import { StyleSheet, View, Text } from 'react-native';
 export default function Hello() {
     return (
         <View>
-            <Text style={styles.hello}>Hello from Hello.js!</Text>
+            <Text style={styles.hello}>Hello iOS!</Text>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     hello: {
-        backgroundColor: 'rebeccapurple'
+        backgroundColor: '#eee',
+        textAlign: 'center',
     }
 });
