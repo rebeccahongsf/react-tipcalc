@@ -1,11 +1,9 @@
 import React from 'react';
 import {
   Button, 
-  StyleSheet, 
-  Text, 
+  StyleSheet,
   View, 
   TextInput,
-  Alert,
 } from 'react-native';
 
 import { AppLoading } from 'expo';
@@ -17,8 +15,8 @@ import {
   Content,
 } from 'native-base';
 
-// import Hello from './Hello';
 import Head from './ui/Head';
+import Values from './ui/Values';
 
 export default class App extends React.Component {
   constructor() {
@@ -40,13 +38,6 @@ export default class App extends React.Component {
   }
 
   updateCustomTip(customTip) {
-    // if (Platform.OS === 'android'){
-
-    // }
-    // if (Platform.OS === 'ios'){
-      
-    // }
-
     if(customTip) {
       this.setState({
         tip: parseFloat(customTip)/100,
@@ -56,30 +47,7 @@ export default class App extends React.Component {
     }
   }
 
-  alert() {
-    Alert.alert(
-      'This is my Alert Title',
-      'This is the alert message',
-      [
-        {text: 'Ask me later', onPress: () => console.log('Ask later pressed')},
-        {
-          text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-        {text: 'OK', onPress: () => console.log('OK pressed')},
-        
-      ]
-    )
-  }
-
   render() {
-    let tip = 0.00;
-    if(this.state.inputValue) {
-      tip = parseFloat(this.state.inputValue * this.state.tip)
-      tip = (Math.round(tip * 100)/100).toFixed(2);
-    }
-
     if (!this.state.isReady) {
       return <AppLoading />;
     }
@@ -88,14 +56,11 @@ export default class App extends React.Component {
       <Container>
         <Head />
           <Content padder>
-            <Button
-              title="Alert"
-              onPress={this.alert}
-            />
           <View style={styles.container}>
-            <Text>
-              ${tip}
-            </Text>
+            <Values 
+              tipPercent={this.state.tip}
+              bill={this.state.inputValue}
+            />
             <TextInput 
               value={this.state.inputValue}
               style={styles.input}
