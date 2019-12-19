@@ -6,6 +6,7 @@ import {
   View, 
   TextInput,
   StatusBar,
+  Platform,
 } from 'react-native';
 
 import { AppLoading } from 'expo';
@@ -23,6 +24,7 @@ import {
 } from 'native-base';
 
 import Hello from './Hello';
+import { lockPlatformAsync } from 'expo/build/ScreenOrientation/ScreenOrientation';
 
 export default class App extends React.Component {
   constructor() {
@@ -44,6 +46,13 @@ export default class App extends React.Component {
   }
 
   updateCustomTip(customTip) {
+    // if (Platform.OS === 'android'){
+
+    // }
+    // if (Platform.OS === 'ios'){
+      
+    // }
+
     if(customTip) {
       this.setState({
         tip: parseFloat(customTip)/100,
@@ -118,7 +127,11 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   header: {
-    marginTop: StatusBar.currentHeight,
+    ...Platform.select({
+      android: {
+        marginTop: StatusBar.currentHeight,
+      },
+    })
   },
   container: {
     flex: 1,
