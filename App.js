@@ -55,42 +55,44 @@ export default class App extends React.Component {
     return (
       <Container>
         <Head />
-          <Content padder>
           <View style={styles.container}>
-            <Values 
-              tipPercent={this.state.tip}
-              bill={this.state.inputValue}
-            />
-            <TextInput 
-              value={this.state.inputValue}
-              style={styles.input}
-              keyboardType='numeric'
-              placeholder='0.00'
-              onChangeText={(text) => this.setState({inputValue: text})}
-            />
-            <View style={styles.buttonGroup}>
-              <Button
-                title="10%"
-                onPress={() => this.setState({tip : 0.1})}
-              />
-              <Button
-                title="15%"
-                onPress={() => this.setState({tip : 0.15})}
-              />
-              <Button
-                title="20%"
-                onPress={() => this.setState({tip : 0.2})}
-              />
-              <TextInput 
-                value={(this.state.tip * 100).toString}
-                style={styles.customTip}
-                keyboardType='numeric'
-                placeholder='20%'
-                onChangeText={(customTip) => this.updateCustomTip(customTip)}
-              />
-            </View>
+            <Content padder>
+              <View>
+                <Values 
+                  tipPercent={this.state.tip}
+                  bill={this.state.inputValue}
+                />
+                <TextInput 
+                  value={this.state.inputValue}
+                  style={styles.input}
+                  keyboardType='numeric'
+                  placeholder='0.00'
+                  onChangeText={(text) => this.setState({inputValue: text})}
+                />
+                <View style={styles.buttonGroup}>
+                  <Button
+                    title="10%"
+                    onPress={() => this.setState({tip : 0.1})}
+                  />
+                  <Button
+                    title="15%"
+                    onPress={() => this.setState({tip : 0.15})}
+                  />
+                  <Button
+                    title="20%"
+                    onPress={() => this.setState({tip : 0.2})}
+                  />
+                  <TextInput 
+                    value={(this.state.tip * 100).toString}
+                    style={styles.customTip}
+                    keyboardType='numeric'
+                    placeholder='20%'
+                    onChangeText={(customTip) => this.updateCustomTip(customTip)}
+                  />
+                </View>
+              </View>
+            </Content>
           </View>
-        </Content>
       </Container>
     );
   }
@@ -101,6 +103,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#809C8E',
     alignItems: 'center',
+    height: '100%', 
+    width: '100%',
   },
   input: {
     height: 40,
