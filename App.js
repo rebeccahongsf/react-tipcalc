@@ -5,8 +5,7 @@ import {
   Text, 
   View, 
   TextInput,
-  StatusBar,
-  Platform,
+  Alert,
 } from 'react-native';
 
 import { AppLoading } from 'expo';
@@ -16,15 +15,10 @@ import { Ionicons } from '@expo/vector-icons';
 import {
   Container,
   Content,
-  Header,
-  Left, 
-  Body, 
-  Right, 
-  Title,
 } from 'native-base';
 
-import Hello from './Hello';
-import { lockPlatformAsync } from 'expo/build/ScreenOrientation/ScreenOrientation';
+// import Hello from './Hello';
+import Head from './ui/Head';
 
 export default class App extends React.Component {
   constructor() {
@@ -62,6 +56,23 @@ export default class App extends React.Component {
     }
   }
 
+  alert() {
+    Alert.alert(
+      'This is my Alert Title',
+      'This is the alert message',
+      [
+        {text: 'Ask me later', onPress: () => console.log('Ask later pressed')},
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => console.log('OK pressed')},
+        
+      ]
+    )
+  }
+
   render() {
     let tip = 0.00;
     if(this.state.inputValue) {
@@ -75,17 +86,12 @@ export default class App extends React.Component {
 
     return (
       <Container>
-        <View style={styles.header}>
-          <Header>
-            <Left>
-              <Body>
-                <Title>Tip Calculator</Title>
-              </Body>
-            </Left>
-          </Header>
-        </View>
+        <Head />
           <Content padder>
-            {/* <Hello /> */}
+            <Button
+              title="Alert"
+              onPress={this.alert}
+            />
           <View style={styles.container}>
             <Text>
               ${tip}
@@ -126,13 +132,6 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    ...Platform.select({
-      android: {
-        marginTop: StatusBar.currentHeight,
-      },
-    })
-  },
   container: {
     flex: 1,
     backgroundColor: '#809C8E',
