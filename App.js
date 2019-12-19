@@ -4,7 +4,8 @@ import {
   StyleSheet, 
   Text, 
   View, 
-  TextInput 
+  TextInput,
+  StatusBar,
 } from 'react-native';
 
 import { AppLoading } from 'expo';
@@ -65,15 +66,17 @@ export default class App extends React.Component {
 
     return (
       <Container>
-        <Header>
-          <Left>
-            <Body>
-              <Title>Tip Calculator</Title>
-            </Body>
-          </Left>
-        </Header>
+        <View style={styles.header}>
+          <Header>
+            <Left>
+              <Body>
+                <Title>Tip Calculator</Title>
+              </Body>
+            </Left>
+          </Header>
+        </View>
           <Content padder>
-            <Hello />
+            {/* <Hello /> */}
           <View style={styles.container}>
             <Text>
               ${tip}
@@ -114,6 +117,9 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    marginTop: StatusBar.currentHeight,
+  },
   container: {
     flex: 1,
     backgroundColor: '#809C8E',
