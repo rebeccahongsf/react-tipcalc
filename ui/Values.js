@@ -18,10 +18,10 @@ const Values = ({tipPercent, bill}) => {
     return(
         <View>
             <Text>
-              ${tip}
+              Tip: ${tip}
             </Text>
             <Text>
-              ${total}
+              Total: ${total}
             </Text>
         </View>
     )
