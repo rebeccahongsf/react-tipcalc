@@ -56,12 +56,21 @@ export default class App extends React.Component {
       <Container>
         <Head />
           <View style={styles.container}>
+            <View style={styles.showTip}>
+              <Values 
+                tipPercent={this.state.tip}
+                bill={this.state.inputValue}
+              />
+            </View>
             <View style={styles.input}>
               <Text style={styles.textStyle}>Enter Bill Total:</Text>
               <TextInput 
                 value={this.state.inputValue}
                 style={styles.billInput}
+                placeholderTextColor='#ccc'
+                selectionColor="#ccc"
                 keyboardType='numeric'
+                keyboardAppearance ='default'
                 placeholder='0.00'
                 onChangeText={(text) => this.setState({inputValue: text})}
               />
@@ -86,28 +95,17 @@ export default class App extends React.Component {
                 accessibilityLabel = '18% tip'
                 onPress={() => this.setState({tip : 0.18})}
                 >
-                  <Text style={styles.tipText}>20%</Text>
+                  <Text style={styles.tipText}>18%</Text>
                 </TouchableOpacity>
-              <TextInput
-                value={(this.state.tip * 100).toString}
-                style={styles.customTip}
-                keyboardType='numeric'
-                placeholder='20%'
-                onChangeText={(customTip) => this.updateCustomTip(customTip)}
-              />
-            </View>
-            <View style={styles.calcGroup}>
-              <TouchableOpacity style={styles.calcButton}
-                onPress={() => this.alert}
-              >
-                <Text style={styles.textStyle}>Calculate</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.showTip}>
-              <Values 
-                tipPercent={this.state.tip}
-                bill={this.state.inputValue}
-              />
+              <View style={styles.customTip}>
+                <TextInput
+                  value={(this.state.tip * 100).toString}
+                  style={styles.tipInput}
+                  keyboardType='numeric'
+                  placeholder='20%'
+                  onChangeText={(customTip) => this.updateCustomTip(customTip)}
+                />
+              </View>
             </View>
           </View>
       </Container>
@@ -123,9 +121,16 @@ const styles = StyleSheet.create({
     height: '100%', 
     width: '100%',
   },
+  showTip: {
+    padding: 25,
+    backgroundColor: '#98b392',
+    width: '100%',
+    alignItems: 'center',
+  },
   input: {
     backgroundColor: '#f2fff9',
     color: '#575757',
+    fontSize: 50,
     height: '15%',
     width: '100%',
     padding: 10,
@@ -138,7 +143,7 @@ const styles = StyleSheet.create({
   tipText: {
     fontWeight: '600',
     textTransform: 'uppercase',
-    color: '#ccc',
+    color: '#575757',
     fontSize: 25,
   },
   billInput: {
@@ -147,7 +152,7 @@ const styles = StyleSheet.create({
   buttonGroup: {
     flexDirection: 'row',
     alignItems: 'stretch',
-    padding: 10,
+    margin: 10,
   },
   tipButton:{
     backgroundColor: '#98b392',
@@ -163,18 +168,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     height: 100,
     width: 100,
-    fontSize: 25,
   },
-  calcButton: {
-    backgroundColor: '#98b392',
-    color: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 10,
-    marginTop: 10,
-  },
-  showTip: {
+  tipInput: {
     flex: 1,
-    justifyContent: 'center',
+    textAlign: 'center',
+    margin: 25,
+    fontSize: 25,
+    borderBottomColor: '#000', 
+    borderBottomWidth: 1,
   },
 });

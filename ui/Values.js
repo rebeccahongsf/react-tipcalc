@@ -17,23 +17,37 @@ const Values = ({tipPercent, bill}) => {
     }
 
     return(
-        <View>
-            <Text style={styles.textStyle}>
-              Tip: ${tip}
-            </Text>
-            <Text style={styles.textStyle}>
-              Total: ${total}
-            </Text>
-        </View>
+      <View>
+          <Text style={styles.textTitle}>
+            Tip:
+          </Text>
+          <Text style={styles.textStyle}>
+            ${tip}
+          </Text>
+          <Text style={styles.textTitle}>
+            Total:
+          </Text>
+          <Text style={styles.textStyle}>
+             ${total}
+          </Text>
+      </View>
     )
 };
 
 const styles = StyleSheet.create({
   textStyle: {
+    fontWeight: '300',
+    fontSize: 20,
+    textTransform: 'uppercase',
+    color: '#575757',
+    textAlign: 'center',
+  },
+  textTitle: {
     fontWeight: '600',
     fontSize: 25,
     textTransform: 'uppercase',
-    color: '#ccc',
+    color: '#575757',
+    textAlign: 'center',
   },
 });
 
