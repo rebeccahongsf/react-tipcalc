@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  StyleSheet,
 } from 'react-native';
 
 
@@ -17,14 +18,23 @@ const Values = ({tipPercent, bill}) => {
 
     return(
         <View>
-            <Text>
+            <Text style={styles.textStyle}>
               Tip: ${tip}
             </Text>
-            <Text>
+            <Text style={styles.textStyle}>
               Total: ${total}
             </Text>
         </View>
     )
 };
+
+const styles = StyleSheet.create({
+  textStyle: {
+    fontWeight: '600',
+    fontSize: 25,
+    textTransform: 'uppercase',
+    color: '#ccc',
+  },
+});
 
 export default Values;

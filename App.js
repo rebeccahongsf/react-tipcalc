@@ -56,31 +56,37 @@ export default class App extends React.Component {
       <Container>
         <Head />
           <View style={styles.container}>
-            <TextInput 
-              value={this.state.inputValue}
-              style={styles.input}
-              keyboardType='numeric'
-              placeholder='0.00'
-              onChangeText={(text) => this.setState({inputValue: text})}
-            />
+            <View style={styles.input}>
+              <Text style={styles.textStyle}>Enter Bill Total:</Text>
+              <TextInput 
+                value={this.state.inputValue}
+                style={styles.billInput}
+                keyboardType='numeric'
+                placeholder='0.00'
+                onChangeText={(text) => this.setState({inputValue: text})}
+              />
+            </View>
             <View style={styles.buttonGroup}>
               <TouchableOpacity
                 style={styles.tipButton}
+                accessibilityLabel = '10% tip'
                 onPress={() => this.setState({tip : 0.1})}
               >
-                <Text>10%</Text>
+                <Text style={styles.tipText}>10%</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.tipButton}
+                accessibilityLabel = '15% tip'
                 onPress={() => this.setState({tip : 0.15})}
                 >
-                  <Text>15%</Text>
+                  <Text style={styles.tipText}>15%</Text>
                 </TouchableOpacity>
               <TouchableOpacity
                 style={styles.tipButton}
-                onPress={() => this.setState({tip : 0.2})}
+                accessibilityLabel = '18% tip'
+                onPress={() => this.setState({tip : 0.18})}
                 >
-                  <Text>20%</Text>
+                  <Text style={styles.tipText}>20%</Text>
                 </TouchableOpacity>
               <TextInput
                 value={(this.state.tip * 100).toString}
@@ -95,14 +101,6 @@ export default class App extends React.Component {
                 tipPercent={this.state.tip}
                 bill={this.state.inputValue}
               />
-            </View>
-            <View style={styles.calcGroup}>
-              <TouchableOpacity
-                style={styles.calcButton}
-                onPress={() => this.setState({tip : 0.2})}
-              >
-                <Text>CALCULATE</Text>
-              </TouchableOpacity>
             </View>
           </View>
       </Container>
@@ -124,6 +122,19 @@ const styles = StyleSheet.create({
     height: '15%',
     width: '100%',
     padding: 10,
+  },
+  textStyle: {
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    color: '#ccc',
+  },
+  tipText: {
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    color: '#ccc',
+    fontSize: 25,
+  },
+  billInput: {
     fontSize: 50,
   },
   buttonGroup: {
@@ -145,16 +156,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     height: 100,
     width: 100,
-  },
-  calcGroup: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    margin: 50,
-  },
-  calcButton: {
-    backgroundColor: '#98b392',
-    padding: 10,
+    fontSize: 25,
   },
   showTip: {
     flex: 1,
