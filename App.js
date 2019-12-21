@@ -96,6 +96,13 @@ export default class App extends React.Component {
                 onChangeText={(customTip) => this.updateCustomTip(customTip)}
               />
             </View>
+            <View style={styles.calcGroup}>
+              <TouchableOpacity style={styles.calcButton}
+                onPress={() => this.alert}
+              >
+                <Text style={styles.textStyle}>Calculate</Text>
+              </TouchableOpacity>
+            </View>
             <View style={styles.showTip}>
               <Values 
                 tipPercent={this.state.tip}
@@ -157,6 +164,14 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     fontSize: 25,
+  },
+  calcButton: {
+    backgroundColor: '#98b392',
+    color: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    marginTop: 10,
   },
   showTip: {
     flex: 1,
